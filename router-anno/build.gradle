@@ -1,0 +1,42 @@
+apply plugin: 'java-library'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies{
+    compile 'com.google.auto.service:auto-service:1.0-rc2'
+    compile 'com.squareup:javapoet:1.9.0'
+}
+
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+//上传到JCenter
+apply plugin: 'com.novoda.bintray-release'
+def baseUrl = 'https://github.com/JasmineBen'
+def gitUrl = "${baseUrl}/AndroidRouter.git"
+
+publish {
+    userOrg = 'jasmineben' // 改成你在 bintray 上注册的用户名
+    groupId = 'com.conan.router' // 改成你的包名（影响别人引用的第一段）
+    artifactId = 'router-anno' // 改成你的 Library 名字（影响别人引用的第二段）
+    publishVersion = '1.0.0' // 版本号 （影响别人引用的第三段）
+    desc = 'AndroidRouter Annotation Library'
+    website = gitUrl
+}
+
+
+// 上传到本地代码库
+//uploadArchives{
+//    repositories{
+//        mavenDeployer{
+//            repository(url:uri('../repo_anno'))
+//            pom.groupId = 'com.conan.router' // 组名
+//            pom.artifactId = 'anno' // 插件名
+//            pom.version = '1.0.0' // 版本号
+//        }
+//    }
+//}

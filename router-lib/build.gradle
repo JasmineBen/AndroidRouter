@@ -1,0 +1,61 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+apply plugin: 'com.novoda.bintray-release'
+
+android {
+    compileSdkVersion 28
+
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.conan.router:router-anno:1.0.0'
+}
+
+//上传到JCenter
+apply plugin: 'com.novoda.bintray-release'
+def baseUrl = 'https://github.com/JasmineBen'
+def gitUrl = "${baseUrl}/AndroidRouter.git"
+
+publish {
+    userOrg = 'jasmineben' // 改成你在 bintray 上注册的用户名
+    groupId = 'com.conan.router' // 改成你的包名（影响别人引用的第一段）
+    artifactId = 'router-lib' // 改成你的 Library 名字（影响别人引用的第二段）
+    publishVersion = '1.0.0' // 版本号 （影响别人引用的第三段）
+    desc = 'AndroidRouter Library'
+    website = gitUrl
+}
+
+// 上传到本地代码库
+//uploadArchives{
+//    repositories{
+//        mavenDeployer{
+//            repository(url:uri('../repo_lib'))
+//            pom.groupId = 'com.conan.router' // 组名
+//            pom.artifactId = 'router-lib' // 插件名
+//            pom.version = '1.0.0' // 版本号
+//        }
+//    }
+//}
