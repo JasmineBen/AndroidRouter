@@ -1,5 +1,6 @@
 package com.conan.router.library;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -78,7 +79,7 @@ public class Router {
         }
     }
 
-    public boolean openScheme(Context context, String url, Bundle data) {
+    public boolean openScheme(Activity context, String url, Bundle data, int requestCode) {
         if(!bInited){
             init();
         }
@@ -89,7 +90,7 @@ public class Router {
             String routerParserClassName = mSuperRouterParserClass.get(authority);
             Log.i("zpy","BaseRouter openScheme:"+mRouterParser.get(routerParserClassName));
             if(routerParserClassName != null && mRouterParser.get(routerParserClassName) != null
-                    && mRouterParser.get(routerParserClassName).openScheme(context,url,data)){
+                    && mRouterParser.get(routerParserClassName).openScheme(context,url,data,requestCode)){
                 return true;
             }
         }

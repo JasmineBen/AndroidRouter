@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Router.getInstance().openScheme(MainActivity.this,"router://sample/SampleActivity?sampleName=sample&sampleAge=18",null);
+                Router.getInstance().openScheme(MainActivity.this,"router://sample/SampleActivity?sampleName=sample&sampleAge=18",null,-1);
             }
         });
     }

@@ -11,8 +11,8 @@ import com.conan.router.anno.annotation.Route;
 import com.conan.router.library.InjectService;
 import com.conan.router.library.Router;
 
-@Route(authority = "sample",path = "SampleActivity",desc = "sampleDesc")
-public class SampleActivity extends AppCompatActivity{
+@Route(authority = "sample",path = "MainActivity2",desc = "MainActivity2")
+public class SampleActivity1 extends AppCompatActivity{
 
     @Inject(name = "sampleName")
     String name;
@@ -29,7 +29,7 @@ public class SampleActivity extends AppCompatActivity{
         findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Router.getInstance().openScheme(SampleActivity.this,"router://app/MainActivity2?name=MainActivity2&age=180",null,-1);
+                Router.getInstance().openScheme(SampleActivity1.this,"router://app/MainActivity2?name=MainActivity2&age=180",null,-1);
 
             }
         });

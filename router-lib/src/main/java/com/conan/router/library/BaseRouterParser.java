@@ -1,5 +1,6 @@
 package com.conan.router.library;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -32,7 +33,7 @@ public abstract class BaseRouterParser {
         paramsTypes.get(routeClass).add(InjectParameter.fromField(name,type,injectName));
     }
 
-    public boolean openScheme(Context context,String url,Bundle data){
+    public boolean openScheme(Activity context, String url, Bundle data, int requestCode){
         if(!TextUtils.isEmpty(url) && context != null) {
             if(!bInited) {
                initRouters();
@@ -51,7 +52,11 @@ public abstract class BaseRouterParser {
                 List<InjectParameter> injectParams = paramsTypes.get(targetActivity);
                 Intent intent = new Intent(context,targetActivity);
                 intent.putExtras(getUriParams(injectParams,uri,data));
-                context.startActivity(intent);
+                if(requestCode > 0) {
+                    context.startActivityForResult(intent,requestCode);
+                }else{
+                    context.startActivity(intent);
+                }
                 return true;
             }
         }
