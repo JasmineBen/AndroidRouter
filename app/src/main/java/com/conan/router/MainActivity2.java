@@ -29,7 +29,7 @@ public class MainActivity2 extends AppCompatActivity {
         findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Router.getInstance().openScheme(MainActivity2.this,"router://app/MainActivity3?name1=MainActivity3&age1=1800",null，-1);
+                Router.getInstance().openScheme(MainActivity2.this,"router://app/MainActivity3?name1=MainActivity3&age1=1800",null,-1);
             }
         });
     }
